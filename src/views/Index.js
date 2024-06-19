@@ -49,19 +49,19 @@ export default function Index() {
       <div className="wrapper">
         <PageHeader />
         <div className="main">
-          <Basics />
+          {/* <Basics />
           <Navbars />
           <Tabs />
           <Pagination />
           <Notifications />
           <Typography />
           <JavaScript />
-          <NucleoIcons />
+          <NucleoIcons /> */}
           <Signup />
-          <Examples />
-          <Download />
+          {/* <Examples /> */}
+          {/* <Download /> */}
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

@@ -39,7 +39,7 @@ import Footer from "components/Footer/Footer.js";
 
 import bigChartData from "variables/charts.js";
 
-export default function LandingPage() {
+export default function ResumeOneStop() {
   React.useEffect(() => {
     document.body.classList.toggle("landing-page");
     // Specify how to clean up after this effect:
@@ -86,31 +86,34 @@ export default function LandingPage() {
             <Row className="row-grid justify-content-between align-items-center text-left">
               <Col lg="6" md="6">
                 <h1 className="text-white">
-                  We keep your coin <br />
-                  <span className="text-white">secured</span>
+                  Upload your Resume <br />
+                  <span className="text-white">and just Prompt about it.</span>
                 </h1>
                 <p className="text-white mb-3">
-                  A wonderful serenity has taken possession of my entire soul,
-                  like these sweet mornings of spring which I enjoy with my
-                  whole heart. I am alone, and feel...
+                  A cute Maltese will understand your intention and do it for you with customerization.
                 </p>
                 <div className="btn-wrapper mb-3">
                   <p className="category text-success d-inline">
-                    From 9.99%/mo
+                    Free
                   </p>
-                  <Button
-                    className="btn-link"
-                    color="success"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                    size="sm"
-                  >
-                    <i className="tim-icons icon-minimal-right" />
-                  </Button>
                 </div>
                 <div className="btn-wrapper">
                   <div className="button-container">
-                    <Button
+                    <input
+                      type="file"
+                      id="file-upload"
+                      style={{ display: 'none' }}
+                    />
+                    <label htmlFor="file-upload" className="custom-file-upload btn btn-success btn-round">
+                      Choose File
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="What you want on resume..."
+                      style={{ display: 'block', marginBottom: '10px' }}
+                    />
+                    {/* <Button
                       className="btn-icon btn-simple btn-round btn-neutral"
                       color="default"
                       href="#pablo"
@@ -133,7 +136,7 @@ export default function LandingPage() {
                       onClick={(e) => e.preventDefault()}
                     >
                       <i className="fab fa-facebook" />
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </Col>
@@ -147,7 +150,7 @@ export default function LandingPage() {
             </Row>
           </div>
         </div>
-        <section className="section section-lg">
+        {/* <section className="section section-lg">
           <section className="section">
             <img
               alt="..."
@@ -341,8 +344,8 @@ export default function LandingPage() {
               </Col>
             </Row>
           </Container>
-        </section>
-        <section className="section section-lg section-safe">
+        </section> */}
+        {/* <section className="section section-lg section-safe">
           <img
             alt="..."
             className="path"
@@ -467,8 +470,8 @@ export default function LandingPage() {
               </CardBody>
             </Card>
           </Col>
-        </section>
-        <section className="section section-lg section-coins">
+        </section> */}
+        {/* <section className="section section-lg section-coins">
           <img
             alt="..."
             className="path"
@@ -583,8 +586,8 @@ export default function LandingPage() {
               </Col>
             </Row>
           </Container>
-        </section>
-        <Footer />
+        </section> */}
+        {/* <Footer /> */}
       </div>
     </>
   );

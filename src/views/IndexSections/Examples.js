@@ -28,7 +28,7 @@ export default function Examples() {
       <Container className="text-center">
         <Row>
           <Col sm="6">
-            <Link to="landing-page">
+            <Link to="rps">
               <img
                 alt="..."
                 className="img-raised"
@@ -38,10 +38,10 @@ export default function Examples() {
             <Button
               className="btn-simple btn-round"
               color="primary"
-              to="landing-page"
+              to="rps"
               tag={Link}
             >
-              View Landing Page
+              View Resume One Stop Services
             </Button>
           </Col>
           <Col sm="6">
