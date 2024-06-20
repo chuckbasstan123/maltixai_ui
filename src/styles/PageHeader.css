@@ -1,0 +1,23 @@
+.animated-word-container {
+    display: inline-block;
+    width: 400px; /* Adjust the width as needed */
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #78c4c5; /* Example background color */
+    color: #000; /* Example text color */
+    padding: 10px; /* Add padding for better visual appearance */
+    border-radius: 5px; /* Optional: Add border radius for rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  }
+  
+  .animated-word {
+    display: inline-block;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .animated-word-enter,
+  .animated-word-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
