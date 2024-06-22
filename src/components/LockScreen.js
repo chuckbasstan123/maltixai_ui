@@ -8,7 +8,7 @@ export default function LockScreen({ onUnlock }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (passcode === "1234") {
+    if (passcode === "7427466391") {
       onUnlock();
     } else {
       setError("Incorrect passcode. Please try again.");
@@ -26,7 +26,8 @@ export default function LockScreen({ onUnlock }) {
       <div className="squares square7" />
       <Container>
         <div className="content-center brand">
-          <h1 className="h1-seo">MaltixAI: Unleash Your Potentials</h1>
+          <h1 className="h1-seo">MaltixAI</h1>
+          <h2 className="h2-seo">Transform Anyone into Any Expert</h2>
           <Form onSubmit={handleSubmit} className="lock-screen-form">
             <FormGroup>
               <Label for="passcode">Passcode</Label>
@@ -35,7 +36,7 @@ export default function LockScreen({ onUnlock }) {
                 id="passcode"
                 value={passcode}
                 onChange={(e) => setPasscode(e.target.value)}
-                placeholder="Enter passcode"
+                placeholder="First 10-digit prime found in consecutive digits of e"
               />
             </FormGroup>
             <Button type="submit" color="primary">
