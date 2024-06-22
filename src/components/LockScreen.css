@@ -1,0 +1,41 @@
+/* src/components/LockScreen.css */
+
+.lock-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  .lock-screen h2 {
+    margin-bottom: 20px;
+  }
+  
+  .lock-screen form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .lock-screen input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .lock-screen button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .lock-screen button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -53,21 +53,17 @@ export default function Signup() {
         <Row className="row-grid justify-content-between align-items-center">
           <Col lg="6">
             <h3 className="display-3 text-white">
-              A End to End Workplace for AI services Building{" "}
+              A Community and Learning place for AI services Building{" "}
               <span className="text-white"></span>
             </h3>
             <p className="text-white mb-3">
-              The Design System comes with four pre-built services to help you get
-              started faster. You can change the foundation model supplier and template 
-              services and you're good to go. More importantly, looking at them 
-              will give you a picture of what you can built with this powerful design flow 
-              and AI tools. Yes, use AI to build AI services, all in One.
+            The Design System includes four pre-built services to help you get started quickly. You can easily customize the foundation model supplier and template services to suit your needs. More importantly, exploring these services will showcase the potential of what you can create with this powerful design flow and AI tools. Harness the power of AI to build AI services, all in one platform. Join our community! 
             </p>
-            <div className="btn-wrapper">
+            {/* <div className="btn-wrapper">
               <Button color="primary" to="register-page" tag={Link}>
                 Register Page
               </Button>
-            </div>
+            </div> */}
           </Col>
           <Col className="mb-lg-auto" lg="6">
             <Card className="card-register">
@@ -76,7 +72,7 @@ export default function Signup() {
                   alt="..."
                   src={require("assets/img/square-purple-1.png")}
                 />
-                <CardTitle tag="h4">Register</CardTitle>
+                <CardTitle tag="h4">Sign Up</CardTitle>
               </CardHeader>
               <CardBody>
                 <Form className="form">
@@ -114,7 +110,7 @@ export default function Signup() {
                       onBlur={(e) => setEmailFocus(false)}
                     />
                   </InputGroup>
-                  <InputGroup
+                  {/* <InputGroup
                     className={classnames({
                       "input-group-focus": passwordFocus,
                     })}
@@ -130,7 +126,7 @@ export default function Signup() {
                       onFocus={(e) => setPasswordFocus(true)}
                       onBlur={(e) => setPasswordFocus(false)}
                     />
-                  </InputGroup>
+                  </InputGroup> */}
                   <FormGroup check className="text-left">
                     <Label check>
                       <Input type="checkbox" />

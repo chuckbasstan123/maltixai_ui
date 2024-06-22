@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/creativetimofficial/blk-design-system-react/issues"
   },
-  "homepage": "https://demos.creative-tim.com/blk-design-system-react/#/",
+  "homepage": ".",
   "keywords": [
     "react",
     "reactjs",
@@ -65,7 +65,8 @@
     "typescript": "5.0.4"
   },
   "scripts": {
-    "start": "node server.js",
+    "start:prod": "node server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

@@ -153,7 +153,7 @@ export default function ExamplesNavbar() {
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 target="_blank"
-                href="https://www.creative-tim.com/product/blk-design-system-pro-react?ref=bdsr-examples-navbar-upgrade-pro"
+                href="./"
               >
                 <i className="tim-icons icon-spaceship" /> Upgrade to PRO
               </Button>

@@ -185,6 +185,7 @@ export default function ResumeOneStop() {
             </Container>
           </div>
         </div>
+        
         {parsedData && (
           <div className="results-viewer" style={{ width: '100%', padding: '20px', position: 'relative' }}>
             <Container>
@@ -201,6 +202,56 @@ export default function ResumeOneStop() {
             </Container>
           </div>
         )}
+
+        <div className="main-components">
+          <Container>
+            <Row className="justify-content-center">
+              <Col lg="10" md="12">
+                <h2 className="text-left">Main Components of the End to End Service</h2>
+                <p className="text-left mb-4">Discover the core features that make our service unique and powerful:</p>
+                <Table responsive bordered className="text-left">
+                  <thead>
+                    <tr>
+                      <th>Component</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>AI Power Leverage</td>
+                      <td>
+                        <ul>
+                          <li>Crafting effective prompts is challenging. Most general requests rely heavily on well-constructed prompts.</li>
+                          <li>AI power vendor options include ChatGPT, Gemini, and Claude.</li>
+                          <li>Fine-tuning and self-hosting large language models like Llama3 and others.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>UI/UX Design</td>
+                      <td>
+                        <ul>
+                          <li>No prior experience in UI is required. Don't know any line of ReAct nor JavaScript? That's totally fine. Use AI to implement your dream UI is not hard. </li>
+                          <li>No prior UX experience needed. Develop and learn the UX mindset while interactively implementing projects with AI.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>AWS and Microservices</td>
+                      <td>
+                        <ul>
+                          <li>Not a backend engineer? Not even an engineer? It's possible for individuals without an engineering background to manage engineering stacks.</li>
+                          <li>Full integration with AWS infrastructure. Unfamiliar with terms like Route53, Elastic Kubernetes Service, HTTPS, or IAM? That's okay. With a willingness to learn, AI can simplify the process and provide exactly what you need.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </Table>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+
       </div>
     </>
   );

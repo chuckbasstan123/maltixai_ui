@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
@@ -26,13 +9,14 @@ export default function Examples() {
       <img alt="..." className="path" src={require("assets/img/path1.png")} />
       <div className="space-50" />
       <Container className="text-center">
+        <h2 className="text-white mb-4">Examples of Services Built by MaltixAI Learning</h2>
         <Row>
           <Col sm="6">
             <Link to="rps">
               <img
                 alt="..."
                 className="img-raised"
-                src={require("assets/img/landing-page.png")}
+                src={require("assets/img/rps.png")}
               />
             </Link>
             <Button
@@ -44,7 +28,7 @@ export default function Examples() {
               View Resume One Stop Services
             </Button>
           </Col>
-          <Col sm="6">
+          {/* <Col sm="6">
             <Link to="profile-page">
               <img
                 alt="..."
@@ -60,7 +44,7 @@ export default function Examples() {
             >
               View Profile Page
             </Button>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </div>

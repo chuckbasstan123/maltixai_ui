@@ -4,12 +4,6 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Log each request to the console for debugging
-app.use((req, res, next) => {
-  console.log(`Request URL: ${req.url}`);
-  next();
-});
-
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -18,13 +12,9 @@ app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
-// Serve the React app
+// Catch-all handler to serve the React app for any other routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'), err => {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(PORT, () => {
