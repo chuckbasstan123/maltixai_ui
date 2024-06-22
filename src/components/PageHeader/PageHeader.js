@@ -3,7 +3,7 @@ import { Container } from "reactstrap";
 import "styles/PageHeader.css"; // Adjust the path as needed
 
 export default function PageHeader() {
-  const words = ["English Teacher", "UI Designer", "DevOps"];
+  const words = ["Artist", "UI Designer", "DevOps"];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef(null);
@@ -26,7 +26,7 @@ export default function PageHeader() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval); // Clean up the interval on component unmount
   }, [words.length]);
@@ -44,7 +44,7 @@ export default function PageHeader() {
         <div className="content-center brand">
           <h1 className="h1-seo">MaltixAI</h1>
           <h3 className="d-none d-sm-block">
-            A Workplace to make you be
+            A Workplace to make you become
           </h3>
           <h3 className="d-none d-sm-block rolling-container">
             <span

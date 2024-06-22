@@ -1,35 +1,22 @@
 import React, { useState } from "react";
-// react plugin used to create charts
-import { Line } from "react-chartjs-2";
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
-
-// core components
+import axios from "axios";
+import { Button, Col, Row, Table, Container } from "reactstrap";
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
-
-import bigChartData from "variables/charts.js";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ResumeOneStop() {
   const [fileName, setFileName] = useState('');
+  const [file, setFile] = useState(null);
   const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [parsedData, setParsedData] = useState(null);
+  const [userIntention, setUserIntention] = useState('');
 
   React.useEffect(() => {
     document.body.classList.toggle("landing-page");
-    // Specify how to clean up after this effect:
-    return function cleanup() {
+    return () => {
       document.body.classList.toggle("landing-page");
     };
   }, []);
@@ -38,6 +25,7 @@ export default function ResumeOneStop() {
     const file = event.target.files[0];
     if (file && file.type === 'application/pdf') {
       setFileName(file.name);
+      setFile(file);
     } else {
       alert('Please upload a PDF file.');
     }
@@ -45,141 +33,174 @@ export default function ResumeOneStop() {
 
   const handleExampleClick = (example) => {
     setInputValue(example);
+    setUserIntention(example.toLowerCase().replace(/\s+/g, '_'));
+  };
+
+  const parseResume = () => {
+    if (!file) {
+      alert("Please upload a PDF file first.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('user_request', inputValue);
+
+    axios.post('https://api.maltixai.com/parse', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'API-Key': 'eyJhbGciOiJFZERTQSIsImtpZCI6I', 
+      },
+    })
+      .then(response => {
+        setParsedData(response.data[0]);
+        toast.success('Results are ready! Scroll down to view them.');
+      })
+      .catch(error => {
+        console.error(error);
+        alert(`Error processing resume: ${error}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const renderTableData = (data) => {
+    return Object.entries(data).map(([key, value]) => (
+      <tr key={key}>
+        <th>{key.replace(/_/g, ' ')}</th>
+        <td>
+          {Array.isArray(value) ? (
+            <ul>
+              {value.map((item, index) => (
+                <li key={index}>{typeof item === 'object' ? renderTableData(item) : item}</li>
+              ))}
+            </ul>
+          ) : typeof value === 'object' ? (
+            <Table>
+              <tbody>{renderTableData(value)}</tbody>
+            </Table>
+          ) : (
+            value
+          )}
+        </td>
+      </tr>
+    ));
   };
 
   return (
     <>
       <ExamplesNavbar />
+      <ToastContainer />
       <div className="wrapper">
-        <div className="page-header">
-          <img
-            alt="..."
-            className="path"
-            src={require("assets/img/blob.png")}
-          />
-          <img
-            alt="..."
-            className="path2"
-            src={require("assets/img/path2.png")}
-          />
-          <img
-            alt="..."
-            className="shapes triangle"
-            src={require("assets/img/triunghiuri.png")}
-          />
-          <img
-            alt="..."
-            className="shapes wave"
-            src={require("assets/img/waves.png")}
-          />
-          <img
-            alt="..."
-            className="shapes squares"
-            src={require("assets/img/patrat.png")}
-          />
-          <img
-            alt="..."
-            className="shapes circle"
-            src={require("assets/img/cercuri.png")}
-          />
+        <div className="page-header" style={{ position: 'relative' }}>
+          <img alt="..." className="path" src={require("assets/img/blob.png")} />
+          <img alt="..." className="path2" src={require("assets/img/path2.png")} />
+          <img alt="..." className="shapes triangle" src={require("assets/img/triunghiuri.png")} />
+          <img alt="..." className="shapes wave" src={require("assets/img/waves.png")} />
+          <img alt="..." className="shapes squares" src={require("assets/img/patrat.png")} />
+          <img alt="..." className="shapes circle" src={require("assets/img/cercuri.png")} />
           <div className="content-center">
-            <Row className="row-grid justify-content-between align-items-center text-left">
-              <Col lg="6" md="6">
-                <h1 className="text-white">
-                  Upload your Resume <br />
-                  <span className="text-white">and just Prompt about it.</span>
-                </h1>
-                <p className="text-white mb-3">
-                  A cute Maltese will understand your intention and do it for you with customization.
-                </p>
-                <div className="btn-wrapper mb-3">
-                  <p className="category text-success d-inline">
-                    Free
+            <Container>
+              <Row className="row-grid justify-content-between align-items-center text-left">
+                <Col lg="6" md="6">
+                  <h1 className="text-white">
+                    Upload your Resume <br />
+                    <span className="text-white">and just Prompt about it.</span>
+                  </h1>
+                  <p className="text-white mb-3">
+                    A cute Maltese will understand your intention and do it for you with customization.
                   </p>
-                </div>
-                <div className="btn-wrapper">
-                  <div className="button-container">
+                  <div className="btn-wrapper mb-3">
+                    <p className="category text-success d-inline">
+                      Free
+                    </p>
+                  </div>
+                  <div className="btn-wrapper">
+                    <div className="button-container">
+                      <input
+                        type="file"
+                        id="file-upload"
+                        style={{ display: 'none' }}
+                        onChange={handleFileChange}
+                      />
+                      <label htmlFor="file-upload" className="custom-file-upload btn btn-success btn-round">
+                        Choose File
+                      </label>
+                      {fileName && (
+                        <span className="mr-2 mb-2">{fileName}</span>
+                      )}
+                    </div>
                     <input
-                      type="file"
-                      id="file-upload"
-                      style={{ display: 'none' }}
-                      onChange={handleFileChange}
+                      type="text"
+                      className="form-control"
+                      placeholder="Anything with this resume..."
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      style={{ display: 'block', marginBottom: '10px' }}
                     />
-                    <label htmlFor="file-upload" className="custom-file-upload btn btn-success btn-round">
-                      Choose File
-                    </label>
-                    {fileName && (
-                      <span className="mr-2 mb-2">{fileName}</span>
-                    )}
+                    <div className="example-buttons">
+                      <Button
+                        color="primary"
+                        className="mr-2 mb-2"
+                        onClick={() => handleExampleClick('Pros and Cons of my resume')}
+                      >
+                        Pros and Cons of my resume
+                      </Button>
+                      <Button
+                        color="primary"
+                        className="mr-2 mb-2"
+                        onClick={() => handleExampleClick('Skills and Achievements')}
+                      >
+                        Skills and Achievements
+                      </Button>
+                      <Button
+                        color="primary"
+                        className="mr-2 mb-2"
+                        onClick={() => handleExampleClick('Work Experience Highlights')}
+                      >
+                        Work Experience Highlights
+                      </Button>
+                      <Button
+                        color="success"
+                        className="mr-2 mb-2"
+                        onClick={parseResume}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? 'Processing...' : 'Parse Resume'}
+                      </Button>
+                    </div>
                   </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Anything with this resume..."
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    style={{ display: 'block', marginBottom: '10px' }}
+                </Col>
+                <Col lg="4" md="5">
+                  <img
+                    alt="..."
+                    className="img-fluid"
+                    src={require("assets/img/mal.PNG")}
                   />
-                  <div className="example-buttons">
-                    <Button
-                      color="primary"
-                      className="mr-2 mb-2"
-                      onClick={() => handleExampleClick('Pros and Cons of the Resume')}
-                    >
-                      Pros and Cons of the Resume
-                    </Button>
-                    <Button
-                      color="primary"
-                      className="mr-2 mb-2"
-                      onClick={() => handleExampleClick('Skills and Achievements')}
-                    >
-                      Skills and Achievements
-                    </Button>
-                    <Button
-                      color="primary"
-                      className="mr-2 mb-2"
-                      onClick={() => handleExampleClick('Work Experience Highlights')}
-                    >
-                      Work Experience Highlights
-                    </Button>
-                  </div>
-                </div>
-                {/* <Button
-                  className="btn-icon btn-simple btn-round btn-neutral"
-                  color="default"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <i className="fab fa-twitter" />
-                </Button>
-                <Button
-                  className="btn-icon btn-simple btn-round btn-neutral"
-                  color="default"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <i className="fab fa-dribbble" />
-                </Button>
-                <Button
-                  className="btn-icon btn-simple btn-round btn-neutral"
-                  color="default"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <i className="fab fa-facebook" />
-                </Button> */}
-              </Col>
-              <Col lg="4" md="5">
-                <img
-                  alt="..."
-                  className="img-fluid"
-                  src={require("assets/img/mal.PNG")}
-                />
-              </Col>
-            </Row>
+                </Col>
+              </Row>
+            </Container>
           </div>
         </div>
-        {/* <Footer /> */}
+        {parsedData && (
+          <div className="results-viewer" style={{ width: '100%', padding: '20px', position: 'relative' }}>
+            <Container>
+              <h2 className="text-white">Results</h2>
+              {userIntention === 'resume_improve' ? (
+                <div dangerouslySetInnerHTML={{ __html: parsedData.convertedMarkdown }} />
+              ) : (
+                <Table className="table table-striped">
+                  <tbody>
+                    {renderTableData(parsedData)}
+                  </tbody>
+                </Table>
+              )}
+            </Container>
+          </div>
+        )}
       </div>
     </>
   );
