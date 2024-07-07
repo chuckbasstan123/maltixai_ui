@@ -21,3 +21,11 @@
     opacity: 0;
     transform: translateY(-20px);
   }
+
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }

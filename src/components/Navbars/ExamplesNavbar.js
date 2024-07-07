@@ -158,16 +158,16 @@ export default function ExamplesNavbar() {
                 <i className="tim-icons icon-spaceship" /> Upgrade to PRO
               </Button>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink tag={Link} to="/">
                 Back to Kit
               </NavLink>
-            </NavItem>
-            <NavItem>
+            </NavItem> */}
+            {/* <NavItem>
               <NavLink href="https://github.com/creativetimofficial/blk-design-system-react/issues">
                 Have an issue?
               </NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
         </Collapse>
       </Container>

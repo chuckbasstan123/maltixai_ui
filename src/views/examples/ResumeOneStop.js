@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button, Col, Row, Table, Container } from "reactstrap";
+import { Button, Col, Row, Table, Container, CardBody } from "reactstrap";
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import { ToastContainer, toast } from 'react-toastify';
@@ -88,6 +88,21 @@ export default function ResumeOneStop() {
         </td>
       </tr>
     ));
+  };
+
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText("contact@maltixai.onmicrosoft.com").then(
+      () => {
+        console.log("Email address copied to clipboard!");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000); // Hide the notification after 3 seconds
+      },
+      (err) => {
+        console.error("Failed to copy: ", err);
+      }
+    );
   };
 
   return (
@@ -251,7 +266,19 @@ export default function ResumeOneStop() {
             </Row>
           </Container>
         </div>
-
+        <CardBody style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+          <p>
+            Interested in building your services for the business, contact us at:
+          </p>
+          <Button className="btn-round" color="primary" size="lg" onClick={copyToClipboard}>
+            contact@maltixai.onmicrosoft.com
+          </Button>
+          {copied && (
+            <div style={{ marginTop: '10px', color: 'green', fontWeight: 'bold' }}>
+              Email address copied to clipboard!
+            </div>
+          )}
+        </CardBody>
       </div>
     </>
   );

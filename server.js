@@ -14,8 +14,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Health check endpoint
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
+app.get('/healthcheck', (req, res) => {
+  res.status(200).send('ok');
 });
 
 // Serve the React app
