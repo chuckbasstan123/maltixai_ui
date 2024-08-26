@@ -25,6 +25,7 @@ import "assets/demo/demo.css";
 
 import Index from "views/Index.js";
 import ResumeOneStop from "views/examples/ResumeOneStop.js";
+import LawyerOneStops from "views/examples/LawyerOneStop";
 import RegisterPage from "views/examples/RegisterPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 
@@ -35,6 +36,7 @@ root.render(
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/rps" element={<ResumeOneStop />} />
+      <Route path="/law" element={<LawyerOneStops />} />
       <Route path="/register-page" element={<RegisterPage />} />
       <Route path="/profile-page" element={<ProfilePage />} />
       <Route path="*" element={<Navigate to="/components" replace />} />
