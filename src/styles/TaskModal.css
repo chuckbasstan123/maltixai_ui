@@ -1,0 +1,39 @@
+/* TaskModal.css */
+
+.task-modal-header {
+    background-color: #4a4a4a;
+    color: #fff;
+  }
+  
+  .task-modal-body {
+    background-color: #f8f9fa;
+  }
+  
+  .task-modal-footer {
+    border-top: 1px solid #ccc;
+  }
+  
+  .task-input {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    color: #333;
+    font-size: 16px;
+  }
+  .task-modal-header {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .task-input {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .task-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  

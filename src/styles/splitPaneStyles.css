@@ -1,0 +1,12 @@
+/* src/styles/splitPaneStyles.css */
+.SplitPane .Resizer {
+    background: #000;
+    width: 3px; /* Adjust the thickness of the resizer */
+    cursor: col-resize;
+    z-index: 1;
+  }
+  
+  .SplitPane .Resizer:hover {
+    background: #007bff; /* Color when hovering over the resizer */
+  }
+  
