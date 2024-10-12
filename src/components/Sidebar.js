@@ -20,28 +20,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }) {
         padding: isCollapsed ? '10px' : '20px',
       }}
     >
-      {/* Toggle Button */}
-      <button
-        onClick={toggleSidebar}
-        style={{
-          position: 'absolute',
-          top: '10px',
-          right: isCollapsed ? '-15px' : '-25px',
-          width: '30px',
-          height: '30px',
-          backgroundColor: '#00c875',
-          border: 'none',
-          color: '#fff',
-          borderRadius: '50%',
-          cursor: 'pointer',
-          zIndex: 1,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {isCollapsed ? '>' : '<'}
-      </button>
+
 
       {/* Sidebar Navigation Items */}
       <Nav vertical style={{ opacity: isCollapsed ? 0 : 1, transition: 'opacity 0.3s ease' }}>

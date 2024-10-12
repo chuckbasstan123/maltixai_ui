@@ -27,7 +27,20 @@ export default function TaskList({
   };
 
   return (
-    <div style={{ flex: 1, overflowY: 'auto', position: 'relative', padding: '20px' }}>
+    <div style={{
+      flex: 1, 
+      overflowY: 'auto', 
+      position: 'relative', 
+      padding: '20px', 
+      backgroundColor: '#f7f9fc', 
+      borderRadius: '10px',
+      boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+      height: '100%', // Ensures it fills the blob area
+      maxHeight: '100%', // Avoids overflow
+      display: 'flex',
+      flexDirection: 'column', // Ensures TaskItem appears inside the list
+      gap: '10px' // Adds consistent spacing between task items
+    }}>
       {/* Add New Task Button */}
       <Button
         color="primary"
@@ -35,10 +48,10 @@ export default function TaskList({
         style={{
           backgroundColor: '#00c875',
           border: 'none',
-          position: 'fixed', // Change to fixed to avoid layout issues
-          top: '10px',
-          right: '10px',
-          zIndex: 10, // Ensure it stays above other content
+          position: 'absolute', // Use absolute positioning within the blob area
+          bottom: '20px',
+          right: '20px',
+          zIndex: 10,
           borderRadius: '50%',
           width: '50px',
           height: '50px',
@@ -56,12 +69,24 @@ export default function TaskList({
       </Button>
 
       {/* Task List Heading */}
-      <h4 style={{ marginBottom: '20px', fontSize: '22px', fontWeight: '600', color: '#fff' }}>
+      <h4 style={{ 
+        marginBottom: '20px', 
+        fontSize: '22px', 
+        fontWeight: '600', 
+        color: '#333', 
+        textAlign: 'center' 
+      }}>
         Tasks
       </h4>
 
       {/* Task List Items */}
-      <div style={{ marginTop: '60px' }}>
+      <div style={{ 
+        overflowY: 'auto', 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: '15px' // Ensures spacing between each TaskItem
+      }}>
         {tasks.map((task, index) => (
           <TaskItem
             key={index}
@@ -71,16 +96,6 @@ export default function TaskList({
             setTasks={setTasks}
             setSelectedDocument={setSelectedDocument}
             setSelectedChunk={setSelectedChunk}
-            style={{
-              backgroundColor: '#fff',
-              borderRadius: '8px',
-              padding: '15px',
-              marginBottom: '10px',
-              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-              transition: 'transform 0.3s ease',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-3px)')}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
           />
         ))}
       </div>

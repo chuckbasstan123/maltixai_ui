@@ -1,4 +1,3 @@
-// TaskItem.jsx
 import React, { useState } from 'react';
 import { Button, Collapse, CardBody } from 'reactstrap';
 import DocumentList from './DocumentList';
@@ -51,13 +50,19 @@ export default function TaskItem({
       style={{
         background: '#fff',
         borderRadius: '8px',
-        boxShadow: '0 1px 4px rgba(0, 0, 0, 0.1)',
-        marginBottom: '15px',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
         padding: '15px',
-        transition: 'box-shadow 0.2s ease',
+        transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+        width: '100%' // Ensure it stretches within the TaskList container
       }}
-      onMouseOver={(e) => (e.currentTarget.style.boxShadow = '0 3px 8px rgba(0, 0, 0, 0.2)')}
-      onMouseOut={(e) => (e.currentTarget.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.1)')}
+      onMouseOver={(e) => {
+        e.currentTarget.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.15)';
+        e.currentTarget.style.transform = 'translateY(-2px)';
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
     >
       <div
         style={{
@@ -74,9 +79,11 @@ export default function TaskItem({
             width: '100%',
             padding: '10px',
             fontSize: '18px',
-            fontWeight: '600', // Make the case name bold
-            color: '#000', // Highlight the case name in black
+            fontWeight: '600', // Bold task name
+            color: '#333', // Darker text for modern look
             textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           {task.isOpen ? '▼' : '▶'} {task.name}
@@ -95,13 +102,21 @@ export default function TaskItem({
             padding: '0',
             marginRight: '10px',
             boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+            transition: 'background-color 0.3s ease',
           }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#e0e0e0')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#f0f0f0')}
         >
           📎
         </Button>
       </div>
       <Collapse isOpen={task.isOpen}>
-        <CardBody style={{ paddingLeft: '20px', background: '#fafafa' }}>
+        <CardBody style={{
+          paddingLeft: '20px',
+          paddingTop: '10px',
+          background: '#fafafa',
+          borderRadius: '0 0 8px 8px',
+        }}>
           <DocumentList
             documents={task.documents}
             taskIndex={taskIndex}
